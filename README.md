@@ -1,12 +1,51 @@
-# React + Vite
+🚀 Développement d'un Système de Gestion Hospitalière avec Laravel API + React + Tailwind CSS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Je suis ravi de présenter un projet complet de système de gestion hospitalière développé avec une stack technique moderne :
+• Backend : API REST avec Laravel
+• Frontend : React avec Tailwind CSS
+• Style : Interface moderne et responsive
 
-Currently, two official plugins are available:
+🎨 Avec Tailwind CSS :
+• Design system cohérent et maintenable
+• Interface responsive optimisée mobile/desktop
+• Composants UI réutilisables et modulaires
+• Expérience utilisateur fluide et professionnelle
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+📊 Fonctionnalités par rôle :
 
-## Expanding the ESLint configuration
+👨‍💼 Administrateur
+• Tableau de bord avec statistiques et graphiques
+• Gestion complète des utilisateurs et permissions
+• Supervision des congés et validations
+• Vue globale de l'activité hospitalière
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+👨‍⚕️ Médecin
+• Interface de consultation des rendez-vous
+• Gestion numérique des ordonnances
+• Édition et suivi des prescriptions
+• Accès sécurisé aux dossiers patients
+
+📋 Secrétaire
+• Calendrier interactif des rendez-vous
+• Gestion des facturations et documents
+• Administration des demandes de congés
+• Interface de planification optimisée
+
+🔧 Technicien
+• Catalogue des équipements médicaux
+• Gestion des maintenances préventives et curatives
+• Suivi en temps réel des interventions
+• Historique technique complet
+
+🛠 Stack technique avancée :
+• Laravel API REST • React • Tailwind CSS
+• MySQL • Composants modulaires • UI/UX optimisée
+
+✨ Points forts du projet :
+• Design moderne avec Tailwind CSS
+• Architecture microservices avec Laravel API
+• Expérience utilisateur sur-mesure par métier
+• Interface 100% responsive et accessible
+• Composants réutilisables et thème cohérent
+
+#Laravel #React #TailwindCSS #API #DéveloppementWeb #Frontend #GestionHospitalière #FullStack #UIUX #ResponsiveDesign
