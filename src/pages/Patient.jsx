@@ -256,29 +256,6 @@ const Patient = () => {
                         />
                     </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Antécédents médicaux</Form.Label>
-                        <Form.Control
-                            as="textarea"
-                            rows={3}
-                            name="antecedents_medicaux"
-                            value={formData.antecedents_medicaux}
-                            onChange={handleInputChange}
-                            className="rounded-3"
-                        />
-                    </Form.Group>
-
-                    <Form.Group className="mb-4">
-                        <Form.Check
-                            type="switch"
-                            id="hospitalise-switch"
-                            name="hospitalise"
-                            label="Patient hospitalisé"
-                            checked={formData.hospitalise}
-                            onChange={handleInputChange}
-                        />
-                    </Form.Group>
-
                     <div className="d-flex justify-content-end gap-2">
                         <Button variant="light" onClick={() => isEdit ? setShowEditModal(false) : setShowAddModal(false)} className="rounded-pill">
                             Annuler
@@ -341,8 +318,6 @@ const Patient = () => {
           <th className="px-4 py-4 text-sm font-semibold text-white">TÉLÉPHONE</th>
           <th className="px-4 py-4 text-sm font-semibold text-white">EMAIL</th>
           <th className="px-4 py-4 text-sm font-semibold text-white">ADRESSE</th>
-          <th className="px-4 py-4 text-sm font-semibold text-white">ANTÉCÉDENTS</th>
-          <th className="px-4 py-4 text-sm font-semibold text-white">STATUT</th>
           <th className="px-4 py-4 text-sm font-semibold text-white text-center">ACTIONS</th>
         </tr>
       </thead>
@@ -380,16 +355,6 @@ const Patient = () => {
 
             {/* Adresse */}
             <td className="px-4 py-3 text-gray-600 max-w-[200px]">{patient.adresse || '-'}</td>
-
-            {/* Antécédents */}
-            <td className="px-4 py-3 text-gray-600 max-w-[250px]">{patient.antecedents_medicaux || '-'}</td>
-
-            {/* Statut */}
-            <td>
-        <span className={`badge rounded-pill ${patient.hospitalise ? 'bg-danger' : 'bg-success'}`}>
-          {patient.hospitalise ? 'Hospitalisé' : 'Ambulatoire'}
-        </span>
-      </td>
 
             {/* Actions */}
             <td className="px-4 py-3 text-center">

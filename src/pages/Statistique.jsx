@@ -32,7 +32,6 @@ const Statistique = () => {
     totalConges: 0,
     totalEquipments: 0,
     totalMedecins: 0,
-    totalInfirmiers: 0,
     totalTechniciens: 0,
     totalSecretaires: 0,
   });
@@ -108,15 +107,6 @@ const Statistique = () => {
             value={statistiques.totalMedecins}
             icon={FaUserMd}
             bgColor="bg-info"
-            textColor="text-white"
-          />
-        </div>
-        <div className="col-md-3 mb-4">
-          <StatisticCard
-            title="Infirmiers"
-            value={statistiques.totalInfirmiers}
-            icon={FaUserNurse}
-            bgColor="bg-secondary"
             textColor="text-white"
           />
         </div>

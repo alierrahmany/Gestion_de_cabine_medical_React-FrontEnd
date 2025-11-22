@@ -219,7 +219,6 @@ const Facture = () => {
               <th className="px-4 py-3 text-left">Date</th>
               <th className="px-4 py-3 text-left">Montant</th>
               <th className="px-4 py-3 text-left">Statut</th>
-              <th className="px-4 py-3 text-left">Détails</th>
               <th className="px-4 py-3 text-center">Actions</th>
             </tr>
           </thead>
@@ -257,11 +256,7 @@ const Facture = () => {
                       {statutOptions.find(o => o.value === facture.statut)?.label}
                     </span>
                   </td>
-                  <td className="px-4 py-3 max-w-xs">
-                    <div className="truncate" title={facture.details}>
-                      {facture.details || '-'}
-                    </div>
-                  </td>
+                 
                   <td className="px-4 py-3">
                     <div className="flex justify-center space-x-3">
                       <button
@@ -369,17 +364,6 @@ const Facture = () => {
                       </option>
                     ))}
                   </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-1">Détails</label>
-                  <textarea
-                    rows="3"
-                    name="details"
-                    value={formData.details}
-                    onChange={handleInputChange}
-                    className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
                 </div>
 
                 <div className="flex justify-end space-x-3 mt-6">

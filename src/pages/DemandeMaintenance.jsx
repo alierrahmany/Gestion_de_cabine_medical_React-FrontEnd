@@ -18,7 +18,7 @@ const DemandeMaintenance = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
-  const [equipmentToDelete, setEquipmentToDelete] = useState(null);
+  const [requestToDelete, setRequestToDelete] = useState(null); // Fixed: renamed from equipmentToDelete to requestToDelete
   const [isChecked, setIsChecked] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
@@ -128,7 +128,7 @@ const DemandeMaintenance = () => {
   };
 
   const handleDelete = (id) => {
-    setEquipmentToDelete(id);
+    setRequestToDelete(id); // Fixed: use setRequestToDelete instead of setEquipmentToDelete
     setShowDeleteModal(true);
   };
 
@@ -140,17 +140,19 @@ const DemandeMaintenance = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:8000/api/maintenance-requests/${equipmentToDelete}`, {
+      await axios.delete(`http://localhost:8000/api/maintenance-requests/${requestToDelete}`, { // Fixed: use requestToDelete
         headers: { Authorization: `Bearer ${token}` }
       });
       setSuccess('Demande supprimée avec succès 🗑️');
       setShowSuccessModal(true);
       fetchData();
+      setShowDeleteModal(false); // Fixed: close modal after successful deletion
+      setRequestToDelete(null); // Fixed: reset requestToDelete
+      setIsChecked(false); // Fixed: reset checkbox
     } catch (error) {
       handleError('Erreur de suppression', error);
-    } finally {
-      setShowDeleteModal(false);
-      setEquipmentToDelete(null);
+      setShowDeleteModal(false); // Close modal even on error
+      setRequestToDelete(null);
       setIsChecked(false);
     }
   };
@@ -220,10 +222,23 @@ const DemandeMaintenance = () => {
         <SuccessModal />
 
         {/* Delete Confirmation Modal */}
-        <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} centered>
-          <Modal.Body className="text-center p-4">
-            <FaInfoCircle className="text-danger mb-3" size={40} />
-            <h5 className="mb-3">Êtes-vous sûr de vouloir supprimer cette demande?</h5>
+        <Modal show={showDeleteModal} onHide={() => {
+          setShowDeleteModal(false);
+          setRequestToDelete(null); // Reset when closing modal
+          setIsChecked(false); // Reset checkbox when closing modal
+        }} centered>
+          <Modal.Header closeButton>
+            <Modal.Title className="d-flex align-items-center gap-2">
+              <FaInfoCircle className="text-danger" />
+              Confirmation de suppression
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="p-4">
+            <div className="text-center mb-3">
+              <FaInfoCircle className="text-danger mb-3" size={40} />
+              <h5 className="mb-3">Êtes-vous sûr de vouloir supprimer cette demande?</h5>
+              <p className="text-muted">Cette action est irréversible.</p>
+            </div>
             <Form.Check
               type="checkbox"
               label="Je confirme la suppression"
@@ -231,13 +246,26 @@ const DemandeMaintenance = () => {
               onChange={(e) => setIsChecked(e.target.checked)}
               className="mb-3"
             />
-            <Button 
-              variant="outline-danger" 
-              onClick={confirmDelete}
-              className="d-flex align-items-center gap-2 mx-auto"
-            >
-              <FaTrash /> Confirmer la suppression
-            </Button>
+            <div className="d-flex gap-2 justify-content-end">
+              <Button 
+                variant="outline-secondary" 
+                onClick={() => {
+                  setShowDeleteModal(false);
+                  setRequestToDelete(null);
+                  setIsChecked(false);
+                }}
+              >
+                Annuler
+              </Button>
+              <Button 
+                variant="danger" 
+                onClick={confirmDelete}
+                disabled={!isChecked}
+                className="d-flex align-items-center gap-2"
+              >
+                <FaTrash /> Confirmer la suppression
+              </Button>
+            </div>
           </Modal.Body>
         </Modal>
 
@@ -331,8 +359,8 @@ const DemandeMaintenance = () => {
               </div>
             ) : (
               <div className="overflow-x-auto rounded-lg shadow">
-         <table className="w-full divide-y divide-gray-200">
-                <thead className="bg-blue-700">
+                <table className="w-full divide-y divide-gray-200">
+                  <thead className="bg-blue-700">
                     <tr>
                       <th className="px-4 py-3 text-sm font-semibold text-white text-left w-1/4">
                         <div className="d-flex align-items-center">
@@ -496,7 +524,6 @@ const DemandeMaintenance = () => {
             </Form>
           </Modal.Body>
         </Modal>
-     
     </div>
   );
 };

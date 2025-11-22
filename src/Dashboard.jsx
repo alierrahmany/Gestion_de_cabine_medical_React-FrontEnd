@@ -18,7 +18,6 @@ import {
 import { useNavigate } from 'react-router-dom';
 import AdministratifDashboard from './components/Dashboard/AdministratifDashboard';
 import MedcinDashboard from './components/Dashboard/MedcinDashboard';
-import InfirmierDashboard from './components/Dashboard/InfirmierDashboard';
 import SecretaireDashboard from './components/Dashboard/SecretaireDashboard';
 import TechnicienDashboard from './components/Dashboard/TechnicienDashboard';
 
@@ -69,14 +68,6 @@ const Dashboard = () => {
     }
   }, [userData]);
 
-  const toggleDarkMode = () => {
-    const newTheme = darkMode ? 'light' : 'dark';
-    document.documentElement.classList.remove(darkMode ? 'dark' : 'light');
-    document.documentElement.classList.add(newTheme);
-    localStorage.setItem('theme', newTheme);
-    setDarkMode(!darkMode);
-  };
-
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('/login');
@@ -101,7 +92,6 @@ const Dashboard = () => {
 
     switch (userData.role) {
       case 'medcin': return <MedcinDashboard {...props} />;
-      case 'infirmier': return <InfirmierDashboard {...props} />;
       case 'secretaire': return <SecretaireDashboard {...props} />;
       case 'administratif': return <AdministratifDashboard {...props} />;
       case 'technicien': return <TechnicienDashboard {...props} />;
@@ -113,10 +103,7 @@ const Dashboard = () => {
     if (!userData) return null;
 
     const roleConfig = {
-      infirmier: [
-        { id: 'patients', icon: <FaUserInjured />, label: 'Patients' },
-        { id: 'observations', icon: <FaFileMedical />, label: 'Observations' }
-      ],
+     
       administratif: [
         { id: 'dashboard', icon: <FaHome />, label: 'Dashboard' },
         { id: 'utilisateur', icon: <FaUser />, label: 'Utilisateurs' },

@@ -41,7 +41,6 @@ const StatisticsChart = ({ statistiques }) => {
         statistiques.totalConges || 0,
         statistiques.totalEquipments || 0,
         statistiques.totalMedecins || 0,
-        statistiques.totalInfirmiers || 0,
         statistiques.totalTechniciens || 0,
         statistiques.totalSecretaires || 0,
       ];

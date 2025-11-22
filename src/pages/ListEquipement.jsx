@@ -19,15 +19,8 @@ const ListEquipement = () => {
   const [formData, setFormData] = useState({
     name: '',
     type: '',
-    status: 'actif',
-    last_maintenance: new Date().toISOString().split('T')[0],
+    // 'status' a été retiré
   });
-
-  const statusConfig = {
-    actif: { variant: 'success', icon: <FaCheck className="me-1" /> },
-    inactif: { variant: 'danger', icon: <FaTimes className="me-1" /> },
-    'en maintenance': { variant: 'warning', icon: <FaWrench className="me-1" /> },
-  };
 
   const fetchEquipments = async () => {
     setLoading(true);
@@ -57,16 +50,16 @@ const ListEquipement = () => {
     if (equipment) {
       setCurrentEquipment(equipment);
       setFormData({
-        ...equipment,
-        last_maintenance: new Date(equipment.last_maintenance).toISOString().split('T')[0],
+        name: equipment.name,
+        type: equipment.type,
+        // 'status' a été retiré
       });
     } else {
       setCurrentEquipment(null);
       setFormData({
         name: '',
         type: '',
-        status: 'actif',
-        last_maintenance: new Date().toISOString().split('T')[0],
+        // 'status' a été retiré
       });
     }
     setShowModal(true);
@@ -204,36 +197,34 @@ const ListEquipement = () => {
             <h5 className="mb-0 d-flex align-items-center gap-2">
               <FaTools /> Liste des Équipements
             </h5>
-           
           </Card.Header>
         
           <Card.Body>
-       <div className='mb-3'>
-       <InputGroup className="w-25 shadow-sm">
-              <InputGroup.Text className="bg-light border-end-0">
-                <FaSearch />
-              </InputGroup.Text>
-              <Form.Control
-                placeholder="Rechercher un equipement ..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="border-start-0"
-              />
-            </InputGroup>
-       </div>
+            <div className='mb-3'>
+              <InputGroup className="w-25 shadow-sm">
+                <InputGroup.Text className="bg-light border-end-0">
+                  <FaSearch />
+                </InputGroup.Text>
+                <Form.Control
+                  placeholder="Rechercher un equipement ..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="border-start-0"
+                />
+              </InputGroup>
+            </div>
             {loading ? (
               <div className="text-center">
                 <Spinner animation="border" variant="primary" />
               </div>
             ) : (
               <div className="table-responsive">
-                <table className="min-w-full divide-y 0">
+                <table className="min-w-full divide-y">
                   <thead className="bg-blue-600">
                     <tr>
                       <th className="px-4 py-3 text-sm font-semibold text-white text-left">Nom</th>
                       <th className="px-4 py-3 text-sm font-semibold text-white text-left">Type</th>
-                      <th className="px-4 py-3 text-sm font-semibold text-white text-left">Statut</th>
-                      <th className="px-4 py-3 text-sm font-semibold text-white text-left">Dernière Maintenance</th>
+                      {/* Colonne Statut retirée */}
                       <th className="px-4 py-3 text-sm font-semibold text-white text-center">Actions</th>
                     </tr>
                   </thead>
@@ -249,13 +240,7 @@ const ListEquipement = () => {
                           </div>
                         </td>
                         <td className="px-4 py-3">{equipment.type}</td>
-                        <td className="px-4 py-3">
-                          <Badge pill bg={statusConfig[equipment.status].variant}>
-                            {statusConfig[equipment.status].icon}
-                            {equipment.status}
-                          </Badge>
-                        </td>
-                        <td className="px-4 py-3">{new Date(equipment.last_maintenance).toLocaleDateString('fr-FR')}</td>
+                        {/* Cellule Statut retirée */}
                         <td className="px-4 py-3 text-center">
                           <Button
                             variant="link"
@@ -314,35 +299,7 @@ const ListEquipement = () => {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label className="d-flex align-items-center gap-2">
-                  <FaCheckCircle /> Statut *
-                </Form.Label>
-                <Form.Select
-                  name="status"
-                  value={formData.status}
-                  onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                >
-                  {Object.keys(statusConfig).map((status) => (
-                    <option key={status} value={status}>
-                      {status}
-                    </option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-
-              <Form.Group className="mb-4">
-                <Form.Label className="d-flex align-items-center gap-2">
-                  <FaWrench /> Dernière Maintenance *
-                </Form.Label>
-                <Form.Control
-                  type="date"
-                  name="last_maintenance"
-                  value={formData.last_maintenance}
-                  onChange={(e) => setFormData({ ...formData, last_maintenance: e.target.value })}
-                  required
-                />
-              </Form.Group>
+              {/* Section Statut retirée */}
 
               <div className="d-flex justify-content-end gap-2">
                 <Button variant="outline-secondary" onClick={() => setShowModal(false)}>
@@ -356,7 +313,6 @@ const ListEquipement = () => {
             </Form>
           </Modal.Body>
         </Modal>
-  
     </div>
   );
 };
