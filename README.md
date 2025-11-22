@@ -5,12 +5,6 @@ Je suis ravi de présenter un projet complet de système de gestion hospitalièr
 • Frontend : React avec Tailwind CSS
 • Style : Interface moderne et responsive
 
-🎨 Avec Tailwind CSS :
-• Design system cohérent et maintenable
-• Interface responsive optimisée mobile/desktop
-• Composants UI réutilisables et modulaires
-• Expérience utilisateur fluide et professionnelle
-
 📊 Fonctionnalités par rôle :
 
 👨‍💼 Administrateur
@@ -22,24 +16,19 @@ Je suis ravi de présenter un projet complet de système de gestion hospitalièr
 👨‍⚕️ Médecin
 • Interface de consultation des rendez-vous
 • Gestion numérique des ordonnances
-• Édition et suivi des prescriptions
-• Accès sécurisé aux dossiers patients
-
 📋 Secrétaire
+• Gestion complète des patients 
 • Calendrier interactif des rendez-vous
 • Gestion des facturations et documents
 • Administration des demandes de congés
-• Interface de planification optimisée
-
 🔧 Technicien
 • Catalogue des équipements médicaux
 • Gestion des maintenances préventives et curatives
-• Suivi en temps réel des interventions
 • Historique technique complet
 
 🛠 Stack technique avancée :
 • Laravel API REST • React • Tailwind CSS
-• MySQL • Composants modulaires • UI/UX optimisée
+• MySQL 
 
 ✨ Points forts du projet :
 • Design moderne avec Tailwind CSS
